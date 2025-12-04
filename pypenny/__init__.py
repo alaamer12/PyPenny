@@ -89,7 +89,7 @@ def config(
     return _config
 
 
-def _ensure_configured():
+def _ensure_configured() -> None:
     """Ensure pypenny is configured before use"""
     global _manager, _config
     

@@ -211,7 +211,7 @@ class ExchangeRateService:
 
             raise Exception(f"Cannot fetch exchange rate for {base_currency}->{target_currency}: {e}")
 
-    def clear_cache(self):
+    def clear_cache(self) -> None:
         """Clear all cached rates"""
         self.cache.clear()
         logger.info("Cleared exchange rate cache")

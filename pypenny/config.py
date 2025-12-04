@@ -59,7 +59,7 @@ class CurrencyConfig:
     api_timeout: int = 5
     api_max_retries: int = 3
     
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         """Validate configuration after initialization"""
         self.validate()
     

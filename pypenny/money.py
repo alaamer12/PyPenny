@@ -87,21 +87,21 @@ class Money:
     @property
     def amount(self) -> Decimal:
         """Get the amount as Decimal"""
-        return self._money.amount
+        return self._money.amount  # type: ignore[attr-defined]
     
     @property
-    def currency(self):
+    def currency(self):  # type: ignore[no-any-return]
         """Get the currency object"""
-        return self._money.currency
+        return self._money.currency  # type: ignore[attr-defined]
     
     @property
     def currency_code(self) -> str:
         """Get the currency code"""
-        return self._money.currency.code
+        return self._money.currency.code  # type: ignore[attr-defined]
     
     def get_moneyed_object(self) -> MoneyedMoney:
         """Get the underlying py-moneyed Money object"""
-        return self._money
+        return self._money  # type: ignore[attr-defined,no-any-return]
     
     # Arithmetic dunder methods
     
@@ -251,4 +251,4 @@ class Money:
     @property
     def is_frozen(self) -> bool:
         """Check if Money object is frozen (immutable)"""
-        return self._frozen
+        return self._frozen  # type: ignore[attr-defined,no-any-return]

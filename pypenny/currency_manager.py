@@ -445,11 +445,8 @@ class CurrencyManager:
         Example:
             >>> squared = manager.power(money, 2)
         """
-        # Note: This uses py-moneyed's built-in power operation
-        # which raises the amount to the power while keeping currency
-        from decimal import Decimal as D
-        result_amount = money.amount ** D(str(exponent))
-        return Money(result_amount, money.currency)
+        # Use the Money class power operation
+        return money ** exponent
     
     def get_cache_stats(self) -> dict:
         """
