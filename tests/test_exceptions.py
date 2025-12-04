@@ -2,8 +2,7 @@
 Tests for custom exception classes
 """
 
-import pytest
-from exceptions import (
+from pypenny.exceptions import (
     CurrencyException,
     ConfigurationError,
     InvalidCurrencyCodeError,

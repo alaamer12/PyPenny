@@ -3,9 +3,8 @@ Tests for encryption utilities
 """
 
 import pytest
-from pathlib import Path
-from encryption_utils import CacheEncryption
-from exceptions import EncryptionError
+from pypenny.encryption_utils import CacheEncryption
+from pypenny.exceptions import EncryptionError
 
 
 class TestCacheEncryptionInit:

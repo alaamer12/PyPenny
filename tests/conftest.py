@@ -4,7 +4,7 @@ Pytest configuration and shared fixtures for currency tests
 
 import pytest
 from decimal import Decimal
-from config import CurrencyConfig
+from pypenny.config import CurrencyConfig
 
 
 @pytest.fixture

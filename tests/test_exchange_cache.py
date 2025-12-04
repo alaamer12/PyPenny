@@ -6,8 +6,8 @@ import pytest
 from decimal import Decimal
 from datetime import datetime, timedelta
 from unittest import mock
-from exchange_cache import ExchangeCache, ExchangeRateRecord
-from config import CurrencyConfig
+from pypenny.exchange_cache import ExchangeCache, ExchangeRateRecord
+from pypenny.config import CurrencyConfig
 
 
 @pytest.fixture

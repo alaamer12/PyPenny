@@ -3,7 +3,7 @@ Tests for CurrencyConfig configuration class
 """
 
 import pytest
-from config import CurrencyConfig
+from pypenny.config import CurrencyConfig
 
 
 class TestCurrencyConfigValidation:

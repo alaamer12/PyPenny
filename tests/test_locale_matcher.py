@@ -11,7 +11,7 @@ from locale_matcher import (
     find_close_matches,
     calculate_distance
 )
-from exceptions import InvalidLocaleError
+from pypenny.exceptions import InvalidLocaleError
 
 
 class TestCaseNormalization:
