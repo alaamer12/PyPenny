@@ -64,15 +64,15 @@ Repository = "https://github.com/alaamer12/robust-currency"
 Issues = "https://github.com/alaamer12/robust-currency/issues"
 
 [tool.hatch.build.targets.wheel]
-packages = ["pypillars"]
+packages = ["pypenny"]
 
 [tool.hatch.build.targets.sdist]
 include = [
-    "/pypillars",
+    "/pypenny",
     "/tests",
     "/README.md",
     "/LICENSE",
-    "/main.py",
+    "/demo.py",
 ]
 
 [tool.pytest.ini_options]

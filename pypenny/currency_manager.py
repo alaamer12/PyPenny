@@ -208,7 +208,16 @@ class CurrencyManager:
                             # Use cached rate
                             converted_amount = money.amount * cached_rate
                             target_currency = get_currency(to_currency)
-                            exponent = Decimal(10) ** -target_currency.sub_unit
+                            
+                            # Calculate exponent for rounding
+                            # sub_unit is the divisor (100 = 2 decimal places, 1 = 0 decimal places)
+                            if target_currency.sub_unit == 1:
+                                exponent = Decimal('1')
+                            else:
+                                import math
+                                decimal_places = int(math.log10(target_currency.sub_unit))
+                                exponent = Decimal('0.1') ** decimal_places
+                            
                             from decimal import ROUND_HALF_UP
                             converted_amount = converted_amount.quantize(
                                 exponent,
@@ -246,7 +255,16 @@ class CurrencyManager:
                 # Use cached rate
                 converted_amount = money.amount * cached_rate
                 target_currency = get_currency(to_currency)
-                exponent = Decimal(10) ** -target_currency.sub_unit
+                
+                # Calculate exponent for rounding
+                # sub_unit is the divisor (100 = 2 decimal places, 1 = 0 decimal places)
+                if target_currency.sub_unit == 1:
+                    exponent = Decimal('1')
+                else:
+                    import math
+                    decimal_places = int(math.log10(target_currency.sub_unit))
+                    exponent = Decimal('0.1') ** decimal_places
+                
                 from decimal import ROUND_HALF_UP
                 converted_amount = converted_amount.quantize(
                     exponent,

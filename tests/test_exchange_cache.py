@@ -71,7 +71,7 @@ class TestStoreAndRetrieve:
         cache = ExchangeCache(cache_config)
         
         # Store multiple rates
-        with mock.patch('exchange_cache.datetime') as mock_dt:
+        with mock.patch('pypenny.exchange_cache.datetime') as mock_dt:
             # Yesterday
             mock_dt.now.return_value = datetime.now() - timedelta(days=1)
             cache.store_rate('USD', 'EGP', Decimal('49.00'), 'test')
@@ -120,7 +120,7 @@ class TestDeduplication:
         cache = ExchangeCache(cache_config)
         
         # Mock yesterday
-        with mock.patch('exchange_cache.datetime') as mock_dt:
+        with mock.patch('pypenny.exchange_cache.datetime') as mock_dt:
             mock_dt.now.return_value = datetime.now() - timedelta(days=1)
             cache.store_rate('USD', 'EGP', Decimal('49.25'), 'test')
         
@@ -155,7 +155,7 @@ class TestMaxRecordsLimit:
         cache = ExchangeCache(cache_config)
         
         # Store more than max_records (5)
-        with mock.patch('exchange_cache.datetime') as mock_dt:
+        with mock.patch('pypenny.exchange_cache.datetime') as mock_dt:
             for i in range(7):
                 mock_dt.now.return_value = datetime.now() - timedelta(days=6-i)
                 cache.store_rate('USD', 'EGP', Decimal(f'49.{i}'), 'test')
@@ -175,7 +175,7 @@ class TestCleanup:
         cache = ExchangeCache(cache_config)
         
         # Store old and new records
-        with mock.patch('exchange_cache.datetime') as mock_dt:
+        with mock.patch('pypenny.exchange_cache.datetime') as mock_dt:
             # Old record (5 days ago, beyond retention)
             mock_dt.now.return_value = datetime.now() - timedelta(days=5)
             cache.store_rate('USD', 'EGP', Decimal('49.00'), 'test')

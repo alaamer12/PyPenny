@@ -3,7 +3,7 @@ Tests for locale fuzzy matching
 """
 
 import pytest
-from locale_matcher import (
+from pypenny.locale_matcher import (
     normalize_locale,
     is_valid_locale,
     get_locale_suggestions,

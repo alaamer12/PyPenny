@@ -283,7 +283,16 @@ class CurrencyConverter:
 
         # Apply ROUND_HALF_UP rounding (commercial standard)
         # Round to the correct number of decimal places for the target currency
-        exponent = Decimal(10) ** -target_currency.sub_unit
+        # sub_unit is the divisor (100 = 2 decimal places, 1 = 0 decimal places)
+        if target_currency.sub_unit == 1:
+            # No decimal places (like JPY)
+            exponent = Decimal('1')
+        else:
+            # Calculate decimal places from sub_unit divisor
+            import math
+            decimal_places = int(math.log10(target_currency.sub_unit))
+            exponent = Decimal('0.1') ** decimal_places
+        
         converted_amount = converted_amount.quantize(exponent, rounding=ROUND_HALF_UP)
 
         # Create Money object with rounded amount
@@ -339,11 +348,18 @@ class MoneySerializer:
             currency = get_currency(currency)
 
         # Calculate amount from sub-units with ROUND_HALF_UP
-        divisor = Decimal(10 ** currency.sub_unit)
+        divisor = Decimal(currency.sub_unit)
         amount = Decimal(sub_units) / divisor
 
         # Round to correct decimal places using ROUND_HALF_UP
-        exponent = Decimal(10) ** -currency.sub_unit
+        # sub_unit is the divisor (100 = 2 decimal places, 1 = 0 decimal places)
+        if currency.sub_unit == 1:
+            exponent = Decimal('1')
+        else:
+            import math
+            decimal_places = int(math.log10(currency.sub_unit))
+            exponent = Decimal('0.1') ** decimal_places
+        
         amount = amount.quantize(exponent, rounding=ROUND_HALF_UP)
 
         return Money(amount, currency)
