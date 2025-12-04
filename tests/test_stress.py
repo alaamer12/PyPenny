@@ -333,7 +333,7 @@ class TestStressResilience:
         assert formatted is not None
         assert 'USD' in formatted or '$' in formatted
         
-        print("\n✓ System recovered successfully after 100 errors")
+        print("\n[OK] System recovered successfully after 100 errors")
 
 
 if __name__ == "__main__":
