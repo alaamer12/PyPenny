@@ -12,13 +12,11 @@ Shows all features:
 8. Cache inspection and management
 """
 
-from decimal import Decimal
-from config import CurrencyConfig
-from currency_manager import CurrencyManager
-from exceptions import (
+from pypenny.config import CurrencyConfig
+from pypenny.currency_manager import CurrencyManager
+from pypenny.exceptions import (
     CurrencyNotAllowedError,
-    InvalidLocaleError,
-    ExchangeRateUnavailableError
+    InvalidLocaleError
 )
 
 

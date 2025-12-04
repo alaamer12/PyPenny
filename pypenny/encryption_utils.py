@@ -10,7 +10,7 @@ from pathlib import Path
 from typing import Optional
 from cryptography.fernet import Fernet
 import platformdirs
-from exceptions import EncryptionError
+from .exceptions import EncryptionError
 
 
 class CacheEncryption:

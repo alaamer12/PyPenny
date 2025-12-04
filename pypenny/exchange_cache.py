@@ -15,9 +15,9 @@ from datetime import datetime, timedelta
 from decimal import Decimal
 from typing import Optional, Dict, List
 from dataclasses import dataclass, asdict
-from config import CurrencyConfig
-from encryption_utils import CacheEncryption
-from exceptions import CacheError
+from .config import CurrencyConfig
+from .encryption_utils import CacheEncryption
+from .exceptions import CacheError
 
 
 @dataclass
@@ -170,7 +170,8 @@ class ExchangeCache:
                 operation="save"
             )
     
-    def _get_cache_key(self, base_currency: str, target_currency: str) -> str:
+    @staticmethod
+    def _get_cache_key(base_currency: str, target_currency: str) -> str:
         """Get cache key for currency pair"""
         return f"{base_currency.upper()}_{target_currency.upper()}"
     

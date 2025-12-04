@@ -9,7 +9,7 @@ Handles common locale input errors with smart correction:
 
 import difflib
 from typing import Optional, List, Tuple
-from exceptions import InvalidLocaleError
+from .exceptions import InvalidLocaleError
 
 # Try to import Levenshtein for better performance, fall back to difflib
 try:

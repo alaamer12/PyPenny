@@ -14,16 +14,16 @@ from typing import Union, Optional
 from moneyed import Money, get_currency
 from moneyed.l10n import format_money
 
-from config import CurrencyConfig
-from exceptions import (
+from .config import CurrencyConfig
+from .exceptions import (
     InvalidCurrencyCodeError,
     CurrencyNotAllowedError,
     CurrencyMismatchError,
     ConversionError
 )
-from locale_matcher import normalize_locale
-from exchange_cache import ExchangeCache
-from main import CurrencyConverter, ExchangeRateService, MoneySerializer
+from .locale_matcher import normalize_locale
+from .exchange_cache import ExchangeCache
+from ._core import CurrencyConverter, ExchangeRateService
 
 
 class CurrencyManager:
@@ -282,8 +282,8 @@ class CurrencyManager:
             Formatted currency string
         
         Example:
-            >>> formatted = manager.format(money, locale='en_US')
-            >>> formatted = manager.format(money, locale='ar_EG')
+            >>> en = manager.format(money, locale='en_US')
+            >>> ar = manager.format(money, locale='ar_EG')
         """
         # Use configured default locale if not specified
         if locale is None:
@@ -295,7 +295,8 @@ class CurrencyManager:
         # Format using Babel
         return format_money(money, locale=locale, **kwargs)
     
-    def add(self, money1: Money, money2: Money) -> Money:
+    @staticmethod
+    def add(money1: Money, money2: Money) -> Money:
         """
         Safely add two Money objects.
         
@@ -321,7 +322,8 @@ class CurrencyManager:
         
         return money1 + money2
     
-    def subtract(self, money1: Money, money2: Money) -> Money:
+    @staticmethod
+    def subtract(money1: Money, money2: Money) -> Money:
         """
         Safely subtract two Money objects.
         
