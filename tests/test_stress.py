@@ -195,8 +195,10 @@ class TestStressEncryption:
 class TestStressMemory:
     """Test memory usage under load"""
     
+    @pytest.mark.slow
+    @pytest.mark.ci_only
     def test_cache_memory_growth(self, tmp_path):
-        """Test that cache doesn't grow unbounded"""
+        """Test that cache doesn't grow unbounded (CI/CD only - long running)"""
         cache_file = tmp_path / "memory_test.enc"
         config = CurrencyConfig(
             application_name="MemoryTest",

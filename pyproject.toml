@@ -88,6 +88,10 @@ addopts = [
     "--cov-report=term-missing",
     "--cov-report=html",
 ]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "ci_only: marks tests that should only run in CI/CD (deselect with '-m \"not ci_only\"')",
+]
 
 [tool.coverage.run]
 source = ["."]

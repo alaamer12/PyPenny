@@ -367,6 +367,90 @@ class CurrencyManager:
         
         return money1 - money2
     
+    @staticmethod
+    def multiply(money: Money, multiplier: Union[int, float, Decimal]) -> Money:
+        """
+        Multiply Money by a scalar value.
+        
+        Args:
+            money: Money object
+            multiplier: Scalar multiplier (int, float, or Decimal)
+        
+        Returns:
+            Multiplied Money object
+        
+        Example:
+            >>> doubled = manager.multiply(money, 2)
+            >>> tripled = manager.multiply(money, 3.0)
+        """
+        return money * multiplier
+    
+    @staticmethod
+    def divide(money: Money, divisor: Union[int, float, Decimal]) -> Money:
+        """
+        Divide Money by a scalar value.
+        
+        Args:
+            money: Money object
+            divisor: Scalar divisor (int, float, or Decimal)
+        
+        Returns:
+            Divided Money object
+        
+        Raises:
+            ZeroDivisionError: If divisor is zero
+        
+        Example:
+            >>> half = manager.divide(money, 2)
+            >>> third = manager.divide(money, 3.0)
+        """
+        if divisor == 0:
+            raise ZeroDivisionError("Cannot divide money by zero")
+        return money / divisor
+    
+    @staticmethod
+    def floor_divide(money: Money, divisor: Union[int, float, Decimal]) -> Money:
+        """
+        Floor divide Money by a scalar value.
+        
+        Args:
+            money: Money object
+            divisor: Scalar divisor (int, float, or Decimal)
+        
+        Returns:
+            Floor divided Money object
+        
+        Raises:
+            ZeroDivisionError: If divisor is zero
+        
+        Example:
+            >>> result = manager.floor_divide(money, 3)
+        """
+        if divisor == 0:
+            raise ZeroDivisionError("Cannot divide money by zero")
+        return money // divisor
+    
+    @staticmethod
+    def power(money: Money, exponent: Union[int, float, Decimal]) -> Money:
+        """
+        Raise Money amount to a power.
+        
+        Args:
+            money: Money object
+            exponent: Power exponent (int, float, or Decimal)
+        
+        Returns:
+            Money object with amount raised to power
+        
+        Example:
+            >>> squared = manager.power(money, 2)
+        """
+        # Note: This uses py-moneyed's built-in power operation
+        # which raises the amount to the power while keeping currency
+        from decimal import Decimal as D
+        result_amount = money.amount ** D(str(exponent))
+        return Money(result_amount, money.currency)
+    
     def get_cache_stats(self) -> dict:
         """
         Get cache statistics.
