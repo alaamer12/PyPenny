@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "pypenny"
-version = "0.1.0"
+version = "0.1.0.post1"
 description = "Production-grade currency conversion with smart error handling, encrypted caching, and fuzzy locale matching"
 readme = "README.md"
 requires-python = ">=3.8"
@@ -172,3 +172,7 @@ disable_error_code = ["attr-defined", "no-any-return"]
 [[tool.mypy.overrides]]
 module = ["moneyed", "moneyed.*", "babel", "babel.*", "platformdirs", "Levenshtein"]
 ignore_missing_imports = true
+
+[tool.hatch.envs.default.scripts]
+publish = "python -c \"import subprocess, pathlib; token = pathlib.Path('.pypi-token').read_text('utf-8').splitlines()[0].strip(); subprocess.run(['uv', 'publish', '-t', token], check=True)\""
+
